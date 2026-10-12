@@ -1,0 +1,507 @@
+/* =========================================================
+   GENERAL
+========================================================= */
+
+body {
+    margin: 0;
+    background: #f5f7fb;
+    color: #212529;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(
+        135deg,
+        #eef2ff,
+        #f8f9fa
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.login-container {
+    width: 100%;
+    max-width: 430px;
+    padding: 20px;
+}
+
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.08);
+}
+
+
+.logo-circle {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e8efff;
+
+    border-radius: 50%;
+
+    font-size: 30px;
+}
+
+
+.login-card h2 {
+    font-weight: 700;
+}
+
+
+.demo-login {
+    margin-top: 25px;
+
+    padding: 15px;
+
+    background: #f8f9fa;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   DASHBOARD LAYOUT
+========================================================= */
+
+.dashboard-wrapper {
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    width: 250px;
+
+    background: #111827;
+
+    color: white;
+
+    padding: 25px 15px;
+
+    position: fixed;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+
+.sidebar-logo {
+    font-size: 21px;
+
+    font-weight: 700;
+
+    padding: 0 15px 15px;
+}
+
+
+.sidebar hr {
+    border-color: rgba(255,255,255,0.1);
+}
+
+
+.sidebar-link {
+    display: block;
+
+    padding: 12px 15px;
+
+    margin: 5px 0;
+
+    color: #cbd5e1;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    transition: 0.2s;
+}
+
+
+.sidebar-link:hover {
+    background: #1f2937;
+
+    color: white;
+}
+
+
+.sidebar-link.active {
+    background: #2563eb;
+
+    color: white;
+}
+
+
+.sidebar-bottom {
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 15px;
+    right: 15px;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    padding: 30px;
+}
+
+
+.topbar {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+
+.user-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.avatar {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   WELCOME CARD
+========================================================= */
+
+.welcome-card {
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    color: white;
+
+    padding: 30px;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.welcome-card h3 {
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
+.stat-card {
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+
+.stat-icon {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 12px;
+
+    background: #eef2ff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+.stat-card p {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+.stat-card h2 {
+    margin: 3px 0 0;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CONTENT CARD
+========================================================= */
+
+.content-card {
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+
+.card-header-custom {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.card-header-custom h5 {
+    margin: 0;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table {
+    margin-bottom: 0;
+}
+
+
+.table thead th {
+    color: #6b7280;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+.table tbody td {
+    padding-top: 16px;
+
+    padding-bottom: 16px;
+
+    border-color: #f1f3f5;
+}
+
+
+.department-badge {
+    background: #eef2ff;
+
+    color: #3730a3;
+
+    padding: 7px 10px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.form-card {
+    max-width: 950px;
+}
+
+
+.form-label {
+    font-weight: 600;
+
+    font-size: 14px;
+}
+
+
+.form-control,
+.form-select {
+    padding: 11px 13px;
+
+    border-radius: 8px;
+
+    border: 1px solid #d1d5db;
+}
+
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+    padding: 30px;
+}
+
+
+.empty-state > div {
+    font-size: 40px;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+    border-radius: 8px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        width: 70px;
+
+        padding: 20px 8px;
+    }
+
+
+    .sidebar-logo {
+        font-size: 0;
+
+        text-align: center;
+    }
+
+
+    .sidebar-logo:first-letter {
+        font-size: 25px;
+    }
+
+
+    .sidebar-link {
+        text-align: center;
+
+        font-size: 0;
+    }
+
+
+    .sidebar-link:first-letter {
+        font-size: 20px;
+    }
+
+
+    .main-content {
+        margin-left: 70px;
+
+        width: calc(100% - 70px);
+
+        padding: 20px;
+    }
+
+
+    .welcome-card {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+    .topbar {
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+
+}

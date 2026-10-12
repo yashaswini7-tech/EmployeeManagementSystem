@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Employees | EmployeeMS</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="dashboard-wrapper">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            👥 EmployeeMS
+        </div>
+
+        <hr>
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="sidebar-link"
+        >
+            📊 Dashboard
+        </a>
+
+        <a
+            href="{{ url_for('employees') }}"
+            class="sidebar-link active"
+        >
+            👥 Employees
+        </a>
+
+        <a
+            href="{{ url_for('add_employee') }}"
+            class="sidebar-link"
+        >
+            ➕ Add Employee
+        </a>
+
+        <div class="sidebar-bottom">
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="sidebar-link"
+            >
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <div class="topbar">
+
+            <div>
+
+                <h4>
+                    Employees
+                </h4>
+
+                <small class="text-muted">
+                    Manage all employees
+                </small>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('add_employee') }}"
+                class="btn btn-primary"
+            >
+                + Add Employee
+            </a>
+
+        </div>
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- SEARCH -->
+
+        <div class="content-card mb-4">
+
+            <form
+                method="GET"
+                action="{{ url_for('employees') }}"
+            >
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <input
+                            type="text"
+                            name="search"
+                            value="{{ search }}"
+                            class="form-control"
+                            placeholder="🔍 Search name, email or position..."
+                        >
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <select
+                            name="department"
+                            class="form-select"
+                        >
+
+                            <option value="">
+                                All Departments
+                            </option>
+
+                            {% for department in departments %}
+
+                                <option
+                                    value="{{ department['department'] }}"
+                                    {% if selected_department == department['department'] %}
+                                        selected
+                                    {% endif %}
+                                >
+                                    {{ department['department'] }}
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-2">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-100"
+                        >
+                            Search
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- EMPLOYEE TABLE -->
+
+        <div class="content-card">
+
+            <div class="card-header-custom">
+
+                <div>
+
+                    <h5>
+                        Employee List
+                    </h5>
+
+                    <small class="text-muted">
+                        {{ employees|length }} employee(s) found
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Employee</th>
+                            <th>Contact</th>
+                            <th>Department</th>
+                            <th>Position</th>
+                            <th>Salary</th>
+                            <th>Joined</th>
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    {% for employee in employees %}
+
+                        <tr>
+
+                            <td>
+                                #{{ employee["id"] }}
+                            </td>
+
+
+                            <td>
+
+                                <strong>
+                                    {{ employee["name"] }}
+                                </strong>
+
+                            </td>
+
+
+                            <td>
+
+                                <div>
+                                    {{ employee["email"] }}
+                                </div>
+
+                                <small class="text-muted">
+                                    {{ employee["phone"] }}
+                                </small>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="badge department-badge">
+
+                                    {{ employee["department"] }}
+
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                {{ employee["position"] }}
+                            </td>
+
+
+                            <td>
+                                ₹{{ "%.0f"|format(employee["salary"]) }}
+                            </td>
+
+
+                            <td>
+                                {{ employee["date_joined"] }}
+                            </td>
+
+
+                            <td>
+
+                                <div class="d-flex gap-2">
+
+                                    <a
+                                        href="{{ url_for('edit_employee', id=employee['id']) }}"
+                                        class="btn btn-sm btn-outline-primary"
+                                    >
+                                        ✏️
+                                    </a>
+
+
+                                    <form
+                                        method="POST"
+                                        action="{{ url_for('delete_employee', id=employee['id']) }}"
+                                        onsubmit="return confirm('Are you sure you want to delete this employee?');"
+                                    >
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-sm btn-outline-danger"
+                                        >
+                                            🗑️
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    {% else %}
+
+                        <tr>
+
+                            <td
+                                colspan="8"
+                                class="text-center py-5"
+                            >
+
+                                <div class="empty-state">
+
+                                    <div>
+                                        👥
+                                    </div>
+
+                                    <h5>
+                                        No employees found
+                                    </h5>
+
+                                    <p class="text-muted">
+                                        Add your first employee to get started.
+                                    </p>
+
+                                    <a
+                                        href="{{ url_for('add_employee') }}"
+                                        class="btn btn-primary"
+                                    >
+                                        Add Employee
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

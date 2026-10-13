@@ -19,7 +19,7 @@ The project demonstrates the integration of a Python Flask backend with a Postgr
 
 - **Frontend:** HTML, CSS, Bootstrap
 - **Backend:** Python, Flask
-- **Database:** PostgreSQL
+- **Database:** SQLite
 - **Database Connector:** Psycopg2
 - **Authentication:** Flask sessions and Werkzeug password hashing
 
